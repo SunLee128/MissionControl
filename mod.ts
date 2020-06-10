@@ -1,10 +1,38 @@
-import { Application } from "http://deno.land/x/oak@v5.0.0/mod.ts";
+import { Application, send } from "http://deno.land/x/oak@v5.0.0/mod.ts";
+
+import api from "./api.ts";
 
 const app = new Application();
 const PORT = 8000;
 
-app.use((ctx) => {
-  ctx.response.body = "Mission Control API";
+app.use(async (ctx, next) => {
+  await next();
+  const time = ctx.response.headers.get("X-response-Time");
+  console.log(`${ctx.request.method} ${ctx.request.url}: ${time}`);
+});
+
+app.use(async (ctx, next) => {
+  const start = Date.now();
+  await next();
+  const delta = Date.now() - start;
+  ctx.response.headers.set("X-response-Time", `${delta}ms`);
+});
+
+app.use(api.routes());
+
+app.use(async (ctx) => {
+  const filePath = ctx.request.url.pathname;
+  const fileWhitelist = [
+    "/index.html",
+    "/javascripts/script.js",
+    "/stylesheets/style.css",
+    "/images/favicon.png",
+  ];
+  if (fileWhitelist.includes(filePath)) {
+    await send(ctx, filePath, {
+      root: `${Deno.cwd()}/public`,
+    });
+  }
 });
 
 if (import.meta.main) {
