@@ -8,6 +8,7 @@ router.get("/", (ctx) => {
 });
 
 router.get("/planets", (ctx) => {
+  ctx.throw("sample error");
   ctx.response.body = planets.getAllPlanets();
 });
 export default router;

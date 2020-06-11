@@ -49,5 +49,3 @@ Deno.test("filter only habitable planets", function (): void {
     HABITABLE_PLANET,
   ]);
 });
-
-
