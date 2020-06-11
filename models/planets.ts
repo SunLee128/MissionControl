@@ -11,7 +11,7 @@ interface Planet {
 
 let planets: Array<Planet>;
 
-function filterHabitablePlanets(planets: Array<Planet>) {
+export function filterHabitablePlanets(planets: Array<Planet>) {
   return planets.filter((planet) => {
     const planetaryRadius = Number(planet["koi_prad"]);
     const stellarRadius = Number(planet["koi_srad"]);
