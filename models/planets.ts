@@ -3,6 +3,7 @@ import { parse } from "https://deno.land/std/encoding/csv.ts";
 import { BufReader } from "https://deno.land/std/io/bufio.ts";
 
 import { pick, filter } from "https://deno.land/x/lodash@4.17.15-es/lodash.js";
+import * as log from "https://deno.land/std/log/mod.ts";
 
 interface Planet {
   [key: string]: string;
