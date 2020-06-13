@@ -36,7 +36,7 @@ export async function downloadLaunchData() {
       flightNumber: launch["flight_number"],
       mission: launch["mission_name"],
       rocket: launch["rocket"]["rocket_name"],
-      launchData: launch["launch_date_unix"],
+      launchDate: launch["launch_date_unix"],
       upcoming: launch["upcoming"],
       success: launch["launch_success"],
       customers: customers,
