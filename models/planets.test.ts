@@ -1,10 +1,8 @@
 import {
   assertEquals,
   assertNotEquals,
-} from "http://deno.land/std/testing/asserts.ts";
-
+} from "../test_deps.ts";
 import { filterHabitablePlanets } from "./planets.ts";
-
 
 const HABITABLE_PLANET = {
   koi_disposition: "CONFIRMED",
